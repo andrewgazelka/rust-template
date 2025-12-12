@@ -9,6 +9,20 @@ repos:
         files: \.rs$
         pass_filenames: false
 
+      - id: cargo-audit
+        name: cargo audit
+        entry: cargo audit
+        language: system
+        files: (Cargo\.toml|Cargo\.lock)$
+        pass_filenames: false
+
+      - id: cargo-deny
+        name: cargo deny
+        entry: cargo deny check
+        language: system
+        files: (Cargo\.toml|Cargo\.lock|deny\.toml)$
+        pass_filenames: false
+
       # Level 1: Depends on format checks
       - id: cargo-clippy
         name: cargo clippy
