@@ -1,0 +1,39 @@
+repos:
+  - repo: local
+    hooks:
+      # Level 0: Independent checks (run in parallel)
+      - id: cargo-fmt
+        name: cargo fmt
+        entry: cargo fmt --check
+        language: system
+        files: \.rs$
+        pass_filenames: false
+
+      # Level 1: Depends on format checks
+      - id: cargo-clippy
+        name: cargo clippy
+        entry: cargo clippy --all-targets --all-features -- -D warnings
+        language: system
+        files: \.rs$
+        pass_filenames: false
+        depends_on:
+          - cargo-fmt
+
+      # Level 2: Depends on clippy
+      - id: cargo-test
+        name: cargo test
+        entry: cargo test --all-features
+        language: system
+        files: \.rs$
+        pass_filenames: false
+        depends_on:
+          - cargo-clippy
+
+      - id: cargo-build
+        name: cargo build
+        entry: cargo build --all-features
+        language: system
+        files: \.rs$
+        pass_filenames: false
+        depends_on:
+          - cargo-clippy
