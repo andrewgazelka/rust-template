@@ -30,6 +30,13 @@ repos:
         files: (Cargo\.toml|Cargo\.lock)$
         pass_filenames: false
 
+      - id: jscpd
+        name: jscpd
+        entry: bunx jscpd --pattern "src/**/*.rs" --threshold 0
+        language: system
+        files: \.rs$
+        pass_filenames: false
+
       # Level 1: Depends on format checks
       - id: cargo-clippy
         name: cargo clippy
