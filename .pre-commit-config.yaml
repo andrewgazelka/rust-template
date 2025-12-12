@@ -21,8 +21,17 @@ repos:
 
       # Level 2: Depends on clippy
       - id: cargo-test
-        name: cargo test
-        entry: cargo test --all-features
+        name: cargo nextest
+        entry: cargo nextest run --all-features
+        language: system
+        files: \.rs$
+        pass_filenames: false
+        depends_on:
+          - cargo-clippy
+
+      - id: cargo-modules-orphans
+        name: cargo modules orphans
+        entry: cargo modules orphans --all-features
         language: system
         files: \.rs$
         pass_filenames: false
