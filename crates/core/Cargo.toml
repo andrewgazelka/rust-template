@@ -1,0 +1,12 @@
+[package]
+name = "{{crate_name}}-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+color-eyre.workspace = true
+tracing.workspace = true
+
+[lints]
+workspace = true
